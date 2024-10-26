@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block titulo %} Libros {% endblock %}
+
+{% block contenido %} 
+
+<div class="card mt-5">
+    <div class="card-header bg-dark text-white">
+        <a name="" id="" class="btn btn-outline-success" href="{% url 'crear' %}" role="button">
+            <i class="fas fa-plus"></i> Nuevo Libro
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Titulo</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Fecha Publicacion</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for libro in libros %}
+                    <tr class="">
+                        <td scope="row">{{ libro.libro_id }}</td>
+                        <td>{{ libro.libro_nombre }}</td>
+                        <td><img src="{{ libro.libro_imagen.url }}" height="100"></td>
+                        <td>{{ libro.libro_descripcion }}</td>
+                        <td>{{ libro.libro_fecha_publicacion }}</td>
+                        <td>
+                            <a name="" id="" class="btn btn-warning" href="{% url 'editar' %}" role="button">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <a name="" id="" class="btn btn-danger" href="{% url 'eliminar' libro.libro_id %}" role="button">
+                                <i class="fas fa-trash-alt"></i> Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer text-muted">Hola...</div>
+</div>
+
+{% endblock %}
